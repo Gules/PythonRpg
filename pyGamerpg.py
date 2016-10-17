@@ -1,5 +1,4 @@
 #!/usr/bin/python
-#testing git
 import os,time,random,sys,platform
 global player
 global OS
