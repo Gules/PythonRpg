@@ -297,6 +297,8 @@ def Equipmnt():
     print player.name + " the " + player.clas
     print "Equipment:"
     print "|".ljust(x,'-')+"|"
+    for x in sorted(player.Equip2.keys()):
+        print (x + ": "+ player.Equip2[x].name)
     raw_input()
     
     
