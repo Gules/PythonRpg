@@ -136,7 +136,7 @@ class character():
         self.New_Inv('staff')
         self.Equipment()
     def Equipment(self):
-        #self.Equip[1][2]=self.inv[0]
+        self.Equip[1][2]=self.inv[0]
         self.Equip2['R hand']=self.inv[0]
         self.wep.isequip=1
         self.TotDmg()
@@ -291,16 +291,30 @@ def Equipmnt():
     #print (player.Equip[1][2].name)
     #need to figureout how to iterate thru the equipment matrix and give each one a name...
     #or make the matrix a dict
-    player.equip[0][0]
+    #player.equip[0][0]
     x=30
     print
     print player.name + " the " + player.clas
     print "Equipment:"
     print "|".ljust(x,'-')+"|"
-    for x in sorted(player.Equip2.keys()):
-        print (x + ": "+ player.Equip2[x].name)
-    raw_input()
-    
+    #print player.Equip2.keys()
+    print sorted(player.Equip2.keys())
+    print player.Equip2['R hand'].name
+    try:
+		for k in sorted(player.Equip2.keys()):
+			print k
+			print player.Equip2[k]
+			time.sleep(5)
+			if player.Equip2[k] == 'none':
+				print (k+': ' + player.Equipp2[k])
+			else:
+				#print (str(k) + ": "+ str(player.Equip2[k].name))
+				print 'wtf'
+		raw_input()
+    except:
+		print 'something is wrong is Equipment'
+		print 'unexpected error: ', sys.exc_info()[0]
+		time.sleep(2)
     
 def Clear():
     global OS
