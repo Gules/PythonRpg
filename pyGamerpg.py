@@ -101,6 +101,9 @@ class character():
         self.inv=[]
         self.invC=0
         self.Equip=[[0 for x in range(3)] for y in range(4)]
+        self.Equip2={'L shoulder':'none','R shoulder':'none','Head':'none','L arm':'none',\
+        'Neck':'none','R arm':'none','L hand':'none','Torso':'none','R hand':'none','L foot':'none',\
+        'Legs':'none','R foot':'none','L ring':'none','Back':'none','R ring':'none'}
         self.exp=0
         self.gold=0
         self.limit=0
@@ -133,7 +136,8 @@ class character():
         self.New_Inv('staff')
         self.Equipment()
     def Equipment(self):
-        self.Equip[1][2]=self.inv[0]
+        #self.Equip[1][2]=self.inv[0]
+        self.Equip2['R hand']=self.inv[0]
         self.wep.isequip=1
         self.TotDmg()
     def TotDmg(self):
