@@ -134,6 +134,7 @@ class character():
         self.Equipment()
     def Equipment(self):
         self.Equip[1][2]=self.inv[0]
+        self.wep.isequip=1
         self.TotDmg()
     def TotDmg(self):
         self.TotalDmg=self.str+self.Equip[1][2].str
@@ -142,7 +143,6 @@ class character():
         if Type=='dagger':                
             self.wep.Dagger()
             self.inv.append(self.wep)
-            self.wep.isequip=1
         if Type=='staff':
             self.wep.Staff()
             self.inv.append(self.wep)
@@ -283,8 +283,16 @@ def Print_Inv():
         Print_Inv()
 def Equipmnt():
     Clear()
-    print (player.Equip)
-    print (player.Equip[1][2].name)
+    #print (player.Equip)
+    #print (player.Equip[1][2].name)
+    #need to figureout how to iterate thru the equipment matrix and give each one a name...
+    #or make the matrix a dict
+    player.equip[0][0]
+    x=30
+    print
+    print player.name + " the " + player.clas
+    print "Equipment:"
+    print "|".ljust(x,'-')+"|"
     raw_input()
     
     
