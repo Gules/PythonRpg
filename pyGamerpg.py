@@ -142,6 +142,7 @@ class character():
         if Type=='dagger':                
             self.wep.Dagger()
             self.inv.append(self.wep)
+            self.wep.isequip=1
         if Type=='staff':
             self.wep.Staff()
             self.inv.append(self.wep)
@@ -152,6 +153,7 @@ class Wep():
         self.str=3.0
         self.int=4.0
         self.name=''
+        self.isequip=0  #testing to check if i can flag an wepon as equiped to player
         self.GlobNames=['of','9000',\
                         'over','oblivion','demon','blood','soaked','diamond']
     def Dagger(self):
@@ -240,14 +242,21 @@ def Print_Stats():
         Stat_Distro()
 def Print_Inv():
     Clear()
-    print ('|'.ljust(49,'-')+'|')
-    print ('| Inventory'.ljust(49,' ')+'|')
-    print ('|'.ljust(49,'-')+'|')
-    print ('| Name'.ljust(33,' ')+'Type'.ljust(16,' ')+'|')
-    print ('|'.ljust(49,'-')+'|')
+    print ('|'.ljust(59,'-')+'|')#49
+    print ('| Inventory'.ljust(59,' ')+'|')#49
+    print ('|'.ljust(59,'-')+'|')#49
+    print ('| Name'.ljust(43,' ')+'Type'.ljust(16,' ')+'|')#33,16
+    print ('|'.ljust(59,'-')+'|')#49
     for x in range(0,len(player.inv)):
-        print ('|'+str(x+1)+'.'+player.inv[x].name.ljust(30,' ')+player.inv[x].type.ljust(16,' ')+'|')
-        print ('|'.ljust(49,'-')+'|')
+        equiped=''
+        ln = 40 #30 defult spaces after weapon name. need to suptract 1 if it is  or number is over 9
+        if player.inv[x].isequip ==1:
+            equiped='*'
+            ln-=1
+        if x+1 >= 10:
+            ln-=1
+        print ('|'+str(x+1)+'.'+equiped+player.inv[x].name.ljust(ln,' ')+player.inv[x].type.ljust(16,' ')+'|')#16
+        print ('|'.ljust(59,'-')+'|')#49
     usrIn=raw_input('what item do you want to look at(testing, n for new wepon): ')
     if usrIn.isdigit():
         usrIn = int(usrIn)
@@ -333,7 +342,7 @@ def Fight(go):
             elif inp == '2' or inp =='abilities':
                 print 'Abilities:'
                 Print_Abilities()
-                playerTurn=0
+                #playerTurn=0
                 time.sleep(1)
             elif inp == '3' or inp == 'defend':
                 print 'You take a defensive stance'
