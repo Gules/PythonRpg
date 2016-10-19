@@ -78,12 +78,12 @@ def Stat_Distro():
                         player.Mage()     
                     player.sp = 10
             elif int(inp) == 9:
-                done = raw_input("Are you finished editing?(y/n):")
+                done = raw_input("Are you finished editing?(y/n):").lower()
                 player.chp=player.hp
                 player.cm=player.m
                 player.TotDmg()
-                finished =1
-                break
+                if done == 'y':
+                    finished =1
         except:
             print "Somthing went wrong in Stat_Distro()"
             print "Unexpected error:", sys.exc_info()[0]
