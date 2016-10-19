@@ -300,9 +300,9 @@ def Equipmnt():
     try:
 		for k in sorted(player.Equip2.keys()):
 			if player.Equip2[k] == 'none':
-				print (k+': ' + player.Equip2[k])
+				print ('|'+k+': ' + player.Equip2[k])
 			else:
-				print (str(k) + ": "+ str(player.Equip2[k].name))
+				print ('|'+k + ": "+player.Equip2[k].name)
 		raw_input()
     except:
 		print 'something is wrong is Equipment'
