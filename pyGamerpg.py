@@ -297,19 +297,12 @@ def Equipmnt():
     print player.name + " the " + player.clas
     print "Equipment:"
     print "|".ljust(x,'-')+"|"
-    #print player.Equip2.keys()
-    print sorted(player.Equip2.keys())
-    print player.Equip2['R hand'].name
     try:
 		for k in sorted(player.Equip2.keys()):
-			print k
-			print player.Equip2[k]
-			time.sleep(5)
 			if player.Equip2[k] == 'none':
-				print (k+': ' + player.Equipp2[k])
+				print (k+': ' + player.Equip2[k])
 			else:
-				#print (str(k) + ": "+ str(player.Equip2[k].name))
-				print 'wtf'
+				print (str(k) + ": "+ str(player.Equip2[k].name))
 		raw_input()
     except:
 		print 'something is wrong is Equipment'
