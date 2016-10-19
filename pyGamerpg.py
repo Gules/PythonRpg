@@ -287,11 +287,6 @@ def Print_Inv():
         Print_Inv()
 def Equipmnt():
     Clear()
-    #print (player.Equip)
-    #print (player.Equip[1][2].name)
-    #need to figureout how to iterate thru the equipment matrix and give each one a name...
-    #or make the matrix a dict
-    #player.equip[0][0]
     x=30
     print
     print player.name + " the " + player.clas
