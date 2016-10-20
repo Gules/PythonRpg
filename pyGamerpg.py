@@ -287,23 +287,25 @@ def Print_Inv():
         Print_Inv()
 def Equipmnt():
     Clear()
-    x=30
+    x=50
     print
     print player.name + " the " + player.clas
-    print "Equipment:"
+    print "/".ljust(x,'-')+"\\"
+    print "|Equipment:".ljust(x,' ')+'|'
     print "|".ljust(x,'-')+"|"
     try:
 		for k in sorted(player.Equip2.keys()):
 			if player.Equip2[k] == 'none':
-				print ('|'+k+': ' + player.Equip2[k])
+				print str(('|'+k+': ' + player.Equip2[k])+'|').ljust(x,' ')
+				print "|".ljust(x,'-')+"|"
 			else:
-				print ('|'+k + ": "+player.Equip2[k].name)
+				print str(('|'+k + ": "+player.Equip2[k].name)+'|').ljust(x,' ')
+				print "|".ljust(x,'-')+"|"
 		raw_input()
     except:
 		print 'something is wrong is Equipment'
 		print 'unexpected error: ', sys.exc_info()[0]
 		time.sleep(2)
-    
 def Clear():
     global OS
     if OS =='Linux':
