@@ -19,6 +19,7 @@ def Main():
             if inp == '1' or inp == 'rogue':
                 yousAb=0
                 player.Rogue()
+                print 'test 1 in main'
                 Stat_Distro()
                 Game()
             if inp=='2' or inp =='mage':
@@ -100,8 +101,8 @@ class character():
         self.itemsC=0
         self.inv=[]
         self.invC=0
-        self.Equip=[[0 for x in range(3)] for y in range(4)]
-        self.Equip2={'L shoulder':'none','R shoulder':'none','Head':'none','L arm':'none',\
+        #self.Equip=[[0 for x in range(3)] for y in range(4)]
+        self.Equip={'L shoulder':'none','R shoulder':'none','Head':'none','L arm':'none',\
         'Neck':'none','R arm':'none','L hand':'none','Torso':'none','R hand':'none','L foot':'none',\
         'Legs':'none','R foot':'none','L ring':'none','Back':'none','R ring':'none'}
         self.exp=0
@@ -136,12 +137,13 @@ class character():
         self.New_Inv('staff')
         self.Equipment()
     def Equipment(self):
-        self.Equip[1][2]=self.inv[0]
-        self.Equip2['R hand']=self.inv[0]
+        #self.Equip[1][2]=self.inv[0]
+        self.Equip['R hand']=self.inv[0]
         self.wep.isequip=1
         self.TotDmg()
     def TotDmg(self):
-        self.TotalDmg=self.str+self.Equip[1][2].str
+        #self.TotalDmg=self.str+self.Equip[1][2].str
+        self.TotalDmg=self.str+self.Equip['R hand'].str
     def New_Inv(self,Type='dagger'):
         self.wep=Wep()
         if Type=='dagger':                
@@ -257,7 +259,7 @@ def Print_Inv():
         if player.inv[x].isequip ==1:
             equiped='*'
             ln-=1
-        if x+1 >= 10:
+        elif x+1 >= 10:
             ln-=1
         print ('|'+str(x+1)+'.'+equiped+player.inv[x].name.ljust(ln,' ')+player.inv[x].type.ljust(16,' ')+'|')#16
         print ('|'.ljust(59,'-')+'|')#49
@@ -273,12 +275,20 @@ def Print_Inv():
             print 'Str:',player.inv[usrIn].str
             print
             equip=raw_input("Press enter to exit e to equip:")
+            #need to wrinte a new function to manage equipment 
             if equip == 'e':
                 #player.Equip[1][2]=player.inv[usrIn]
-                player.Equip2['R hand']=player.inv[usrIn]
+                if player.Equip['R hand'] == 'none':
+                    player.Equip['R hand']=player.inv[usrIn]
+                    player.Equip['R hand'].isequip=1
+                else: 
+                    player.Equip['R hand'].isequip=0
+                    player.Equip['R hand']=player.inv[usrIn]
+                    player.Equip['R hand'].isequip=1
+                
                 print 'Equiped'
                 #player.TotalDmg=player.str+player.Equip[1][2].str
-                player.TotalDmg=player.str+player.Equip2['R hand'].str
+                player.TotalDmg=player.str+player.Equip['R hand'].str
                 print 'New Total Dmg:',player.TotalDmg
                 raw_input("enter to exit")
     elif usrIn == 'n':
@@ -287,7 +297,7 @@ def Print_Inv():
         player.New_Inv(weps)
         player.invC+=1
         Print_Inv()
-def Equipmnt():
+def Print_Equipmnt():
     Clear()
     x=50
     print
@@ -296,12 +306,12 @@ def Equipmnt():
     print "|Equipment:".ljust(x,' ')+'|'
     print "|".ljust(x,'-')+"|"
     try:
-		for k in sorted(player.Equip2.keys()):
-			if player.Equip2[k] == 'none':
-				print str(('|'+k+': ' + player.Equip2[k])).ljust(x,' ')+'|'
+		for k in sorted(player.Equip.keys()):
+			if player.Equip[k] == 'none':
+				print str(('|'+k+': ' + player.Equip[k])).ljust(x,' ')+'|'
 				print "|".ljust(x,'-')+"|"
 			else:
-				print str(('|'+k + ": "+player.Equip2[k].name)).ljust(x,' ')+'|'
+				print str(('|'+k + ": "+player.Equip[k].name)).ljust(x,' ')+'|'
 				print "|".ljust(x,'-')+"|"
 		raw_input()
     except:
@@ -430,7 +440,7 @@ def Game():
                 player.chp=player.hp
                 time.sleep(1)
             elif gmenu =='e':
-                Equipmnt()
+                Print_Equipmnt()
         except:
             print "Somthings wrong in Game()"
             print "Unexpected error:", sys.exc_info()[0]
