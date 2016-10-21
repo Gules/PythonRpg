@@ -274,9 +274,11 @@ def Print_Inv():
             print
             equip=raw_input("Press enter to exit e to equip:")
             if equip == 'e':
-                player.Equip[1][2]=player.inv[usrIn]
+                #player.Equip[1][2]=player.inv[usrIn]
+                player.Equip2['R hand']=player.inv[usrIn]
                 print 'Equiped'
-                player.TotalDmg=player.str+player.Equip[1][2].str
+                #player.TotalDmg=player.str+player.Equip[1][2].str
+                player.TotalDmg=player.str+player.Equip2['R hand'].str
                 print 'New Total Dmg:',player.TotalDmg
                 raw_input("enter to exit")
     elif usrIn == 'n':
@@ -296,10 +298,10 @@ def Equipmnt():
     try:
 		for k in sorted(player.Equip2.keys()):
 			if player.Equip2[k] == 'none':
-				print str(('|'+k+': ' + player.Equip2[k])+'|').ljust(x,' ')
+				print str(('|'+k+': ' + player.Equip2[k])).ljust(x,' ')+'|'
 				print "|".ljust(x,'-')+"|"
 			else:
-				print str(('|'+k + ": "+player.Equip2[k].name)+'|').ljust(x,' ')
+				print str(('|'+k + ": "+player.Equip2[k].name)).ljust(x,' ')+'|'
 				print "|".ljust(x,'-')+"|"
 		raw_input()
     except:
