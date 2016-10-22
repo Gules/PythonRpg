@@ -101,7 +101,6 @@ class character():
         self.itemsC=0
         self.inv=[]
         self.invC=0
-        #self.Equip=[[0 for x in range(3)] for y in range(4)]
         self.Equip={'L shoulder':'none','R shoulder':'none','Head':'none','L arm':'none',\
         'Neck':'none','R arm':'none','L hand':'none','Torso':'none','R hand':'none','L foot':'none',\
         'Legs':'none','R foot':'none','L ring':'none','Back':'none','R ring':'none'}
@@ -137,12 +136,10 @@ class character():
         self.New_Inv('staff')
         self.Equipment()
     def Equipment(self):
-        #self.Equip[1][2]=self.inv[0]
         self.Equip['R hand']=self.inv[0]
         self.wep.isequip=1
         self.TotDmg()
     def TotDmg(self):
-        #self.TotalDmg=self.str+self.Equip[1][2].str
         self.TotalDmg=self.str+self.Equip['R hand'].str
     def New_Inv(self,Type='dagger'):
         self.wep=Wep()
@@ -277,7 +274,6 @@ def Print_Inv():
             equip=raw_input("Press enter to exit e to equip:")
             #need to wrinte a new function to manage equipment 
             if equip == 'e':
-                #player.Equip[1][2]=player.inv[usrIn]
                 if player.Equip['R hand'] == 'none':
                     player.Equip['R hand']=player.inv[usrIn]
                     player.Equip['R hand'].isequip=1
@@ -287,7 +283,6 @@ def Print_Inv():
                     player.Equip['R hand'].isequip=1
                 
                 print 'Equiped'
-                #player.TotalDmg=player.str+player.Equip[1][2].str
                 player.TotalDmg=player.str+player.Equip['R hand'].str
                 print 'New Total Dmg:',player.TotalDmg
                 raw_input("enter to exit")
